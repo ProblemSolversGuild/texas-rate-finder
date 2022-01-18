@@ -2,11 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Finder from './Finder';
+import Finder2 from './Finder2';
 import reportWebVitals from './reportWebVitals';
+
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <Finder />
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
 
 ReactDOM.render(
   <React.StrictMode>
-    <Finder />
+    <Finder2 />
   </React.StrictMode>,
   document.getElementById('root')
 );
