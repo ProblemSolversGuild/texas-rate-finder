@@ -1,9 +1,9 @@
-import './Finder.css';
+import './Landing.css';
 import LearnMore from './components/LearnMore'
 
-function Finder() {
+function Landing() {
   return (
-    <div className="Finder container-fluid">
+    <div className="Landing container-fluid">
       <main>
         <div className='px-4 py-5 my-5 text-center'>
           <h1 className='display-5 text-center'>Welcome to the Texas Rate Finder!</h1>
@@ -17,8 +17,6 @@ function Finder() {
             </p>
             <div className='d-grid gap-2 d-sm-flex justify-content-sm-center'>
               <LearnMore />
-              
-              <button className='btn btn-success btn-lg px-4 gap-3' type='button'><b>Get Started</b></button>
             </div>
           </div>
         </div>
@@ -27,4 +25,4 @@ function Finder() {
   );
 }
 
-export default Finder;
+export default Landing;

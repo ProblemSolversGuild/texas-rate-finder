@@ -1,10 +1,12 @@
 import { Button, Modal } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const LearnMore = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const navigate = useNavigate();
 
     return (
       <>
@@ -29,9 +31,10 @@ const LearnMore = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>Close</Button>
-            <Button variant="success">Get Started</Button>
+            <Button variant="success" onClick={() => navigate("/app")}>Get Started</Button>
           </Modal.Footer>
         </Modal>
+        <button className='btn btn-success btn-lg px-4 gap-3' type='button'  onClick={() => navigate("/app")}><b>Get Started</b></button>
       </>
     );
   }

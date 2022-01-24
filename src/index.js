@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './index.css';
-import Finder from './Finder';
-import Finder2 from './Finder2';
+import NavBar from './NavBar'
+import Landing from './Landing';
+import FinderMain from './FinderMain';
+import SignUp from './SignUp';
 import reportWebVitals from './reportWebVitals';
 
 // ReactDOM.render(
@@ -14,7 +17,15 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Finder2 />
+    
+    <BrowserRouter>
+      <NavBar />
+      <Routes>
+        <Route path="/app" element={<FinderMain />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
