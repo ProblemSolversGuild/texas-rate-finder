@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
+import { Auth0Provider } from '@auth0/auth0-react';
 import './index.css';
 import NavBar from './NavBar'
 import Landing from './Landing';
@@ -14,17 +16,23 @@ import reportWebVitals from './reportWebVitals';
 //   </React.StrictMode>,
 //   document.getElementById('root')
 // );
-
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 ReactDOM.render(
   <React.StrictMode>
-    
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/app" element={<FinderMain />} />
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        redirectUri={window.location.origin}
+      >
+        <NavBar />
+        <Routes>
+          <Route path="/app" element={<FinderMain />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </Auth0Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

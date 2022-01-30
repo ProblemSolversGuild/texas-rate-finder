@@ -2,7 +2,15 @@ import React from "react";
 import {Form, InputGroup, Col, Row, Button} from "react-bootstrap";
 import '../FinderMain.css'
 
-const Sidebar = props => {
+const Sidebar = ({minRenewableContent, 
+                    maxRenewableContent, 
+                    setMinRenewableContent, 
+                    setMaxRenewableContent,
+                    minContractLength, 
+                    maxContractLength, 
+                    setMinContractLength, 
+                    setMaxContractLength
+                }) => {
     return (
         <>
             
@@ -11,23 +19,23 @@ const Sidebar = props => {
                     <Form.Group className="mb-3">
                         <Form.Label>Renewable Content</Form.Label>
                         <InputGroup >
-                            <Form.Control type="text" />
+                            <Form.Control defaultValue={minRenewableContent} type="text" onChange={setMinRenewableContent} />
                             <InputGroup.Text> to </InputGroup.Text>
-                            <Form.Control type="text" />
+                            <Form.Control defaultValue={maxRenewableContent} type="text" onChange={setMaxRenewableContent} />
                         </InputGroup>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Contract Lenth (Months)</Form.Label>
+                        <Form.Label>Contract Length (Months)</Form.Label>
                         <InputGroup >
-                            <Form.Control type="text" />
+                            <Form.Control type="text" defaultValue={minContractLength} onChange={setMinContractLength} />
                             <InputGroup.Text> to </InputGroup.Text>
-                            <Form.Control type="text" />
+                            <Form.Control type="text" defaultValue={maxContractLength} onChange={setMaxContractLength} />
                         </InputGroup>
                     </Form.Group>
 
                     <Row>
-                        <Col></Col><Col><Button variant="primary" type="submit">Update Filters</Button></Col>
+                        <Col></Col><Col><Button variant="primary" type="submit">Refresh Plan List</Button></Col>
                     </Row>
                 </Form>
             </Col>
