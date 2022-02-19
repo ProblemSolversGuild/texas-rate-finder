@@ -10,7 +10,7 @@ function Landing() {
           <div className='col-lg-6 mx-auto'>
             <p className='lead mb-4'>
               Our mission is to help Texas Residential customers select the best plan for them.  
-              We believe that any customer should be able to select the best plan without spending hourse reading how each individual plan is different from the hundreds of other plans.  
+              We believe that any customer should be able to select the best plan without spending hours reading how each individual plan is different from the hundreds of other plans.  
             </p>
             <p className='lead mb-4'>
               We appreciate you giving us an opportunity to help you find the best rate.  
