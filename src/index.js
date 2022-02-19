@@ -7,7 +7,7 @@ import './index.css';
 import NavBar from './NavBar'
 import Landing from './Landing';
 import FinderMain from './FinderMain';
-import SignUp from './SignUp';
+import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
 
 // ReactDOM.render(

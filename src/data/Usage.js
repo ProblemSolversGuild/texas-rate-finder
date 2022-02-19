@@ -4,6 +4,7 @@ let usageData = [
     {x: new Date('2022-01-01T03:00:00'), y: 4}
 ];
 
-export function getUsage() {
+export function getUsage({ esiid }) {
+    console.log("getting data for" + esiid)
     return usageData;
 }
