@@ -24,12 +24,17 @@ function FinderMain() {
   const [maxContractLength, setMaxContractLength] = useState(60);
   const [ratePlanList, setRatePlanList] = useState(null)
   const [userInfo, setUserInfo] = useState(null)
+  const [usage, setUsage] = useState([{'x':0,'y':0}])
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(!show)
 
   useEffect(()=> {isAuthenticated && getUserInfo({userEmail:user.email, setUserInfo:setUserInfo})},
     [isAuthenticated]
+  )
+
+  useEffect(()=> {userInfo&&getUsage({esiid:userInfo.esiid, setUsage})},
+  [userInfo]
   )
 
   useEffect(()=> {getRatePlanList(setRatePlanList)},
@@ -65,8 +70,7 @@ function FinderMain() {
             </Row>
             <Row>
               <Col></Col>
-              {userInfo?<UsageChart usageData={getUsage({esiid:userInfo.esiid})} />:
-              <UsageChart usageData={getUsage({esiid:""})} />}
+              <UsageChart usageData={usage} />
               <Col></Col>
             </Row>
             <Row >
