@@ -8,7 +8,9 @@
 
 export async function getUserInfo({userEmail, setUserInfo}) {
     const uri = process.env.REACT_APP_URI;
+    let usageData = null
     console.log(uri+"/users/"+userEmail)
     const response = await fetch(uri+"/users/"+userEmail)
-    response.status === 404? setUserInfo(null): setUserInfo( response.json() )
+    usageData = await response.json()
+    response.status === 404? setUserInfo(null): setUserInfo(usageData)
   }

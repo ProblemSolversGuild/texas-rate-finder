@@ -8,9 +8,11 @@ const OutputPlanItem = ( { plan }) => {
                 <Card.Body>
                     <Card.Title data-toggle="tooltip" data-placement="top" title={plan.plan_name} >{plan.plan_name.length > pn_length? plan.plan_name.substring(0,pn_length)+"...":plan.plan_name}</Card.Title>
                     <Card.Text>${plan.plan_$_per_kwh.toFixed(3)}/kWh</Card.Text>
+                    <Card.Link href="#">Signup Link</Card.Link>
                 </Card.Body>
                 <Card.Footer>
-                    <small className='text-muted'>{plan.rep_company}</small>
+                    <small className='text-muted'>{plan.rep_company}</small><br/>
+                    <Card.Link href="#">More Info</Card.Link>
                 </Card.Footer>
             </Card>
     );

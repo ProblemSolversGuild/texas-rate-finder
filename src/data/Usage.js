@@ -7,9 +7,8 @@
 export async function getUsage({ esiid, setUsage } ) {
     const uri = process.env.REACT_APP_URI;
     let usageData = null
-    console.log("getting data for" + esiid)
-    const response = await fetch(uri+"/usages/1"+esiid)
+    console.log("getting data for " + esiid)
+    const response = await fetch(uri+"/usages/"+esiid)
     usageData = await response.json()
-    console.log(usageData)
     setUsage(usageData)
 }
