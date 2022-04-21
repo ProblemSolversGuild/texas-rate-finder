@@ -33,7 +33,7 @@ function FinderMain() {
     [isAuthenticated]
   )
 
-  useEffect(()=> {userInfo?getUsage({esiid:userInfo.esiid, setUsage}):getUsage({esiid:'1', setUsage})},
+  useEffect(()=> {userInfo && userInfo.esiid?getUsage({esiid:userInfo.esiid, setUsage}):getUsage({esiid:'1', setUsage})},
   [userInfo]
   )
 
@@ -64,7 +64,7 @@ function FinderMain() {
               <Col></Col>
               <Col></Col>
               <Col>
-                {(!userInfo && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
+                {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
                 {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({redirect_uri: 'http://kbird-desktop:3001/app', screen_hint: "signup"})}}>Create an Account!</Button>}
               </Col>
             </Row>

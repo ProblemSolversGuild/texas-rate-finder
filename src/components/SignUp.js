@@ -1,17 +1,23 @@
 import {Form, Button, Col, Container, Row} from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { getRepList } from "../data/RepList";
 
 function SignUp() {
   const uri = process.env.REACT_APP_URI;
   const navigate = useNavigate()
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [email, setEmail] = useState('')
-  const [esiid, setEsiid] = useState('1111111111111111111111')
-  const [meterNumber, setMeterNumber] = useState('11111111')
+  const [email, setEmail] = useState(user?user.email:'')
+  const [esiid, setEsiid] = useState(null)
+  const [meterNumber, setMeterNumber] = useState(null)
   const [electricProvider, setElectricProvider] = useState('')
+  const [repList, setRepList] = useState(null)
 
+  useEffect(()=> {getRepList({setRepList})},
+    []
+  )
+  
   const onSubmit = async (e) => {
     e.preventDefault()
     console.log({email, esiid, meterNumber, electricProvider})
@@ -20,9 +26,9 @@ function SignUp() {
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({email, esiid, meterNumber, electricProvider})
+        body: JSON.stringify({email, esiid, meter_number:meterNumber, current_rep_id:electricProvider})
       })
-      res.status === 201 ? navigate('/app') : alert("Error saving {res.status}")
+      res.status === 201 ? navigate('/app') : alert("Error saving " + res.status)
       console.log(res)
     }
 
@@ -35,14 +41,14 @@ function SignUp() {
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" defaultValue={user.email} onChange={(e) => setEmail(e.target.value)} /> 
+        <Form.Control type="email" placeholder="Enter email" defaultValue={user?user.email:null} onChange={(e) => setEmail(e.target.value)} /> 
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Your ESIID</Form.Label>
+        <Form.Label>Your ESIID (more info)</Form.Label>
         <Form.Control type="text" defaultValue={esiid} onChange={(e) => setEsiid(e.target.value)} />
         <Form.Text className="text-muted">
           Check your bill for this. If you can't find it, email kevin@theproblemsolversguild.com
@@ -50,7 +56,7 @@ function SignUp() {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label>Your Meter Number</Form.Label>
+        <Form.Label>Your Meter Number (more info)</Form.Label>
         <Form.Control type="text" defaultValue={meterNumber} onChange={(e) => setMeterNumber(e.target.value)} />
         <Form.Text className="text-muted">
           Check your bill for this. If you can't find it, email kevin@theproblemsolversguild.com
@@ -59,7 +65,9 @@ function SignUp() {
 
       <Form.Group className="mb-3">
         <Form.Label>Your Current Electric Provider</Form.Label>
-        <Form.Control type="text" defaultValue={electricProvider} onChange={(e) => setElectricProvider(e.target.value)} />
+        <Form.Select type="text" defaultValue={electricProvider} onChange={(e) => setElectricProvider(e.target.value)}>
+        {repList && repList.map(rep => <option value={rep.rep_id}>{rep.rep_name}</option> )}
+        </Form.Select>
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={onSubmit}>
