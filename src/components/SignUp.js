@@ -8,7 +8,7 @@ function SignUp() {
   const uri = process.env.REACT_APP_URI;
   const navigate = useNavigate()
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [email, setEmail] = useState(user?user.email:'')
+  const [email, setEmail] = useState(user?user.email:null)
   const [esiid, setEsiid] = useState(null)
   const [meterNumber, setMeterNumber] = useState(null)
   const [electricProvider, setElectricProvider] = useState('')
@@ -20,13 +20,14 @@ function SignUp() {
   
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log({email, esiid, meterNumber, electricProvider})
+    let tmp_email = email?email:user.email
+    console.log({tmp_email, esiid, meterNumber, electricProvider})
     const res = await fetch(uri + '/users', {
         method: 'POST',
         headers: {
           'Content-type': 'application/json',
         },
-        body: JSON.stringify({email, esiid, meter_number:meterNumber, current_rep_id:electricProvider})
+        body: JSON.stringify({email:tmp_email, esiid, meter_number:meterNumber, current_rep_id:electricProvider})
       })
       res.status === 201 ? navigate('/app') : alert("Error saving " + res.status)
       console.log(res)
@@ -66,6 +67,7 @@ function SignUp() {
       <Form.Group className="mb-3">
         <Form.Label>Your Current Electric Provider</Form.Label>
         <Form.Select type="text" defaultValue={electricProvider} onChange={(e) => setElectricProvider(e.target.value)}>
+        <option disabled selected value> -- select your current Electric Provider -- </option>
         {repList && repList.map(rep => <option value={rep.rep_id}>{rep.rep_name}</option> )}
         </Form.Select>
       </Form.Group>
