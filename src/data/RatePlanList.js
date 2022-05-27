@@ -59,7 +59,7 @@
  export async function getRatePlanList(setRatePlanList) {
   const uri = process.env.REACT_APP_URI;
   let plan = null
-  const response = await fetch(uri+"/plans")
+  const response = await fetch(uri+"/plans?language=English")
   plan = await response.json()
   // console.log(plan)
   // console.log(setRatePlanList)
