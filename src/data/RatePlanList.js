@@ -56,10 +56,10 @@
 //     },
 // ];
 
- export async function getRatePlanList(setRatePlanList) {
+ export async function getRatePlanList(esiid, setRatePlanList) {
   const uri = process.env.REACT_APP_URI;
   let plan = null
-  const response = await fetch(uri+"/plans?language=English")
+  const response = await fetch(uri+"/plans/user/"+esiid) //?language=English&processed=True")
   plan = await response.json()
   // console.log(plan)
   // console.log(setRatePlanList)
