@@ -37,8 +37,8 @@ function FinderMain() {
   [userInfo]
   )
 
-  useEffect(()=> {getRatePlanList(setRatePlanList)},
-    []
+  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, setRatePlanList):getRatePlanList('1', setRatePlanList)},
+    [userInfo]
   )
 
   return (
