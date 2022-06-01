@@ -37,7 +37,7 @@ function FinderMain() {
   [userInfo]
   )
 
-  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList):getRatePlanList('1', minContractLength, maxContractLength, setRatePlanList)},
+  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList):getRatePlanList('1', minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList)},
     [userInfo, minContractLength, maxContractLength,  minRenewableContent, maxRenewableContent]
   )
 
