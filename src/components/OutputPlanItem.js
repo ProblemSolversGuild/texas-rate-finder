@@ -2,11 +2,12 @@ import { Card } from 'react-bootstrap'
 
 const OutputPlanItem = ( { plan }) => {
     const pn_length = 20;
+    var product_name = plan.product.replace(/_/g, ' ')
     //https://www.w3schools.com/howto/howto_css_flip_card.asp maybe would be cool to show information on the 'back' of the card like this?
     return (
             <Card className='col-md-1 px-0 mx-1'>
                 <Card.Body>
-                    <Card.Title data-toggle="tooltip" data-placement="top" title={plan.product} >{plan.product.length > pn_length? plan.product.substring(0,pn_length)+"...":plan.product}</Card.Title>
+                    <Card.Title data-toggle="tooltip" data-placement="top" title={product_name} >{product_name.length > pn_length? product_name.substring(0,pn_length)+"...":product_name}</Card.Title>
                     <Card.Text>${plan.plan_$_per_kwh.toFixed(3)}/kWh</Card.Text>
                     {/* <Card.Link href="#">Signup Link</Card.Link> */}
                 </Card.Body>
