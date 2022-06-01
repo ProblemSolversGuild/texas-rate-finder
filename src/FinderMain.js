@@ -17,7 +17,7 @@ function FinderMain() {
   const navigate = useNavigate();
   const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
   const [show, setShow] = useState(false);
-
+  const uri = process.env.REACT_APP_URI;
   const [minRenewableContent, setMinRenewableContent] = useState(0);
   const [maxRenewableContent, setMaxRenewableContent] = useState(100);
   const [minContractLength, setMinContractLength] = useState(0);
@@ -37,8 +37,8 @@ function FinderMain() {
   [userInfo]
   )
 
-  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, setRatePlanList):getRatePlanList('1', setRatePlanList)},
-    [userInfo]
+  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList):getRatePlanList('1', minContractLength, maxContractLength, setRatePlanList)},
+    [userInfo, minContractLength, maxContractLength,  minRenewableContent, maxRenewableContent]
   )
 
   return (
@@ -65,7 +65,7 @@ function FinderMain() {
               <Col></Col>
               <Col>
                 {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
-                {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({redirect_uri: 'http://kbird-desktop:3001/app', screen_hint: "signup"})}}>Create an Account!</Button>}
+                {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({redirect_uri: uri+'/app', screen_hint: "signup"})}}>Create an Account!</Button>}
               </Col>
             </Row>
             <Row>
@@ -75,7 +75,7 @@ function FinderMain() {
             </Row>
             <Row >
               <Col></Col>
-              { ratePlanList && <OutputPlanList planList={ratePlanList} />}
+              { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
               
               <Col><Button className="mx-1" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button></Col>
             </Row>

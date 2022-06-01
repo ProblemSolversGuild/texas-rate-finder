@@ -56,10 +56,10 @@
 //     },
 // ];
 
- export async function getRatePlanList(esiid, setRatePlanList) {
+ export async function getRatePlanList(esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList) {
   const uri = process.env.REACT_APP_URI;
   let plan = null
-  const response = await fetch(uri+"/plans/user/"+esiid)
+  const response = await fetch(uri+"/plans/user/"+esiid+"?min_term_value="+minContractLength+"&max_term_value="+maxContractLength+"&min_renewable="+minRenewableContent+"&max_renewable="+maxRenewableContent)
   plan = await response.json()
   // console.log(plan)
   // console.log(setRatePlanList)
