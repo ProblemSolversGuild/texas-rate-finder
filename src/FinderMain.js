@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { getUsage } from './data/Usage';
-import { getRatePlanList } from './data/RatePlanList';
+import { getUsage, getFakeUsage } from './data/Usage';
+import { getRatePlanList, getFakeRatePlanList } from './data/RatePlanList';
 import { getUserInfo } from './data/UserInfo';
 
 function FinderMain() {
@@ -33,11 +33,11 @@ function FinderMain() {
     [isAuthenticated]
   )
 
-  useEffect(()=> {userInfo && userInfo.esiid?getUsage({esiid:userInfo.esiid, setUsage}):getUsage({esiid:'1', setUsage})},
+  useEffect(()=> {userInfo && userInfo.esiid?getUsage({esiid:userInfo.esiid, setUsage}):getFakeUsage({esiid:'1008901023808934750100', setUsage})},
   [userInfo]
   )
 
-  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList):getRatePlanList('1', minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList)},
+  useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList):getFakeRatePlanList('1008901023808934750100', minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList)},
     [userInfo, minContractLength, maxContractLength,  minRenewableContent, maxRenewableContent]
   )
 
@@ -76,8 +76,8 @@ function FinderMain() {
             <Row >
               <Col></Col>
               { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
-              
-              <Col><Button className="mx-1" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button></Col>
+              <Col>{userInfo && ratePlanList && <Button className="mx-1" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
+              </Col>
             </Row>
           </Col>
         </Row>
