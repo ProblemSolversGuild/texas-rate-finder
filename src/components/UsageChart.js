@@ -9,7 +9,7 @@ const UsageChart = ({ usageData }) => {
             height={300}>
             <VerticalGridLines width={10}/>
             <HorizontalGridLines />
-            <XAxis title="Average Month" />
+            <XAxis title="Average Week" />
             <YAxis title="kWh" />
             <LineSeries data={usageData} color={'black'} />
             

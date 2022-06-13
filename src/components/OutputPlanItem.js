@@ -13,7 +13,7 @@ const OutputPlanItem = ( { plan }) => {
                 </Card.Body>
                 <Card.Footer>
                     <small className='text-muted'>{plan.rep_company}</small><br/>
-                    <Card.Link href={plan.facts_url} target="_blank">More Info</Card.Link>
+                    {plan.facts_url && <Card.Link href={plan.facts_url} target="_blank">More Info</Card.Link>}
                 </Card.Footer>
             </Card>
     );
