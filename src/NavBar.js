@@ -12,7 +12,7 @@ function NavBar() {
         <>
             <Navbar bg="light">
                 <Container>
-                    <Navbar.Brand onClick={()=>navigate("/app")} href=''><h1><b>Texas Rate Finder</b></h1></Navbar.Brand>
+                    <Navbar.Brand onClick={()=>navigate("/app")} href=''><h1><b><img src='logo192.png' height={64}></img>Texas Rate Finder</b></h1></Navbar.Brand>
                     {/* <Nav.Link variant='primary'href='' onClick={()=>navigate("/") }>Welcome Page</Nav.Link> */}
                     
                     <Navbar.Collapse className='justify-content-end'>
