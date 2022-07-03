@@ -1,12 +1,18 @@
 import {Form, Button, Col, Container, Row} from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
+
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getRepList } from "../data/RepList";
+import { loadStripe } from "@stripe/stripe-js";
+// const stripePromise = loadStripe("pk_test_51KtkY6IKsit4k2HPsGm7CvidiYQH85rBYd4Z8fuWRkLoq8O6EnkfghykSBkajfWGhEVPqFXtIJhRoKtlk0wpLwlK00xvTDVAVw");
 
 function SignUp() {
   const uri = process.env.REACT_APP_URI;
   const navigate = useNavigate()
+  const [clientSecret, setClientSecret] = useState("");
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [email, setEmail] = useState(user?user.email:null)
   const [esiid, setEsiid] = useState(null)
@@ -14,6 +20,17 @@ function SignUp() {
   const [electricProvider, setElectricProvider] = useState('')
   const [repList, setRepList] = useState(null)
 
+  // useEffect(() => {
+  //   // Create PaymentIntent as soon as the page loads (from https://stripe.com/docs/payments/quickstart)
+  //   fetch(uri + "/create-payment-intent/", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ items: "month" }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setClientSecret(data.clientSecret));
+  // }, []);
+  
   useEffect(()=> {getRepList({setRepList})},
     []
   )
@@ -33,11 +50,30 @@ function SignUp() {
       console.log(res)
     }
 
+    const appearance = {
+      theme: 'stripe',
+    };
+    const options = {
+      clientSecret,
+      appearance,
+    };
+
   return (
     <>
     <Container fluid>
-      <Row>
-        <Col></Col>
+      {/* <Row>
+      <Col></Col>
+      <Col>
+          {clientSecret && (
+            <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
+          )}
+      </Col>
+      <Col></Col>
+    </Row> */}
+    <Row>
+    <Col></Col>
     <Col className="justify-content-center">
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
