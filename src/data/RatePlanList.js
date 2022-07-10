@@ -61,7 +61,7 @@ let fakePlanList = [
   if (response.status === 403) {
     plan=fakePlanList
   }
-  console.log(plan)
+  // console.log(plan)
   setRatePlanList(plan)
   setRatePlanListLoading(false)
 }
