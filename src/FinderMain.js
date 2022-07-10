@@ -46,7 +46,6 @@ function FinderMain() {
   useEffect(()=> {userInfo && userInfo.esiid?getRatePlanList(userInfo.esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList, setRatePlanListLoading):getFakeRatePlanList('1008901023808934750100', minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList, setRatePlanListLoading)},
     [userInfo, minContractLength, maxContractLength,  minRenewableContent, maxRenewableContent]
   )
-  console.log(state)
   return (
     <>
       <Container fluid>
