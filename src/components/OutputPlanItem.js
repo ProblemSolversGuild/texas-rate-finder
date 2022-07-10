@@ -9,7 +9,6 @@ const OutputPlanItem = ( { plan }) => {
                 <Card.Body>
                     <Card.Title data-toggle="tooltip" data-placement="top" title={product_name} >{product_name.length > pn_length? product_name.substring(0,pn_length)+"...":product_name}</Card.Title>
                     <Card.Text>${plan.plan_$_per_kwh.toFixed(3)}/kWh</Card.Text>
-                    {/* <Card.Link href="#">Signup Link</Card.Link> */}
                 </Card.Body>
                 <Card.Footer>
                     <small className='text-muted'>{plan.rep_company}</small><br/>

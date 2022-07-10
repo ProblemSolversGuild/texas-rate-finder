@@ -51,15 +51,23 @@ let fakePlanList = [
     },
 ];
 
- export async function getRatePlanList(esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList) {
+ export async function getRatePlanList(esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList, setRatePlanListLoading) {
   const uri = process.env.REACT_APP_URI;
   setRatePlanList(null)
+  setRatePlanListLoading(true)
   let plan = null
   const response = await fetch(uri+"/plans/user/"+esiid+"?min_term_value="+minContractLength+"&max_term_value="+maxContractLength+"&min_renewable="+minRenewableContent+"&max_renewable="+maxRenewableContent)
   plan = await response.json()
+  if (response.status === 403) {
+    plan=fakePlanList
+  }
+  console.log(plan)
   setRatePlanList(plan)
+  setRatePlanListLoading(false)
 }
 
-export async function getFakeRatePlanList(esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList) {
+export async function getFakeRatePlanList(esiid, minContractLength, maxContractLength, minRenewableContent, maxRenewableContent, setRatePlanList, setRatePlanListLoading) {
+  setRatePlanListLoading(true)
   setRatePlanList(fakePlanList)
+  setRatePlanListLoading(false)
 }
