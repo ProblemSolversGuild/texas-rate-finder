@@ -7,11 +7,12 @@ const CheckEmail = ({}) => {
         <ToastContainer position='middle-center'>
             <Toast show={showToast} onClose={() => setShowToast(!showToast)} bg='light'>
                 <Toast.Header>
-                {/* <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" /> */}
                 <strong className="me-auto">Check your email</strong>
                 <small></small>
                 </Toast.Header>
-                <Toast.Body>Because we get your usage from Smart Meter Texas, you have to authorize us to view your electric usage.  If you don't see anything shortly, send an email to <b>kevin@theproblemsolversguild.com</b></Toast.Body>
+                <Toast.Body>An Email has been sent to the email associated with your account.  Because we get your usage from Smart Meter Texas, you have to authorize us to view your electric usage.  <br/>Once you confirm the agreement, return to this page and the plans will show up.  
+                    If you don't see an email shortly after filling out your esid and meter number, send an email to <b>kevin@theproblemsolversguild.com</b>
+                </Toast.Body>
             </Toast>
         </ToastContainer>
     );

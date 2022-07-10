@@ -12,7 +12,8 @@ function NavBar() {
         <>
             <Navbar bg="light">
                 <Container>
-                    <Navbar.Brand onClick={()=>navigate("/app")} href=''><h1><b><img src='logo192.png' height={64}></img>Texas Rate Finder</b></h1></Navbar.Brand>
+                    <Image src='logo192.png' height={64} />
+                    <Navbar.Brand onClick={()=>navigate("/app")} href=''><b><h1 style={{marginTop: .5+'rem'}} >Texas Rate Finder</h1></b></Navbar.Brand>
                     {/* <Nav.Link variant='primary'href='' onClick={()=>navigate("/") }>Welcome Page</Nav.Link> */}
                     
                     <Navbar.Collapse className='justify-content-end'>
@@ -22,7 +23,7 @@ function NavBar() {
                                 <>
                                     
                                     <NavDropdown title={"Signed in as: "+ user.name } align='end' >
-                                        <Dropdown.Item onClick={()=>navigate("/signup")}>Meter Info</Dropdown.Item>
+                                        <Dropdown.Item onClick={()=>navigate("/signup")}>Profile</Dropdown.Item>
                                         <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>Logout</Dropdown.Item>
                                         {/* <LogoutButton /> */}
                                     </NavDropdown>

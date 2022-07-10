@@ -81,17 +81,7 @@ function FinderMain() {
             </Row>
             <Row >
               <Col></Col>
-              {/* {getUsage({esiid:"1008901022901140850116", setUsage})} */}
-              {/* <Toast>
-              <Toast.Header>
-                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                <strong className="me-auto">Check your email</strong>
-                <small></small>
-              </Toast.Header>
-              <Toast.Body>Because we get your usage from Smart Meter Texas, you have to authorize us to view your electric usage.  If you don't see anything shortly, send an email to <b>kevin@theproblemsolversguild.com</b></Toast.Body>
-              </Toast> */}
               { ratePlanListLoading&&<Spinner animation="border" />}
-              {console.log(ratePlanList)}
               { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
               <Col>{userInfo && ratePlanList && userInfo.esiid && <Button className="mx-1" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
               </Col>
