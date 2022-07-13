@@ -1,14 +1,10 @@
-import {Form, Button, Col, Container, Row} from "react-bootstrap";
+import {Form, Button, Col, Container, Row, Alert} from "react-bootstrap";
 import { useAuth0 } from '@auth0/auth0-react';
 
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getRepList } from "../data/RepList";
 import { getUserInfo } from '../data/UserInfo';
-import { loadStripe } from "@stripe/stripe-js";
-// const stripePromise = loadStripe("pk_test_51KtkY6IKsit4k2HPsGm7CvidiYQH85rBYd4Z8fuWRkLoq8O6EnkfghykSBkajfWGhEVPqFXtIJhRoKtlk0wpLwlK00xvTDVAVw");
 
 function SignUp() {
   const uri = process.env.REACT_APP_URI;
@@ -23,16 +19,6 @@ function SignUp() {
   const [validated, setValidated] = useState(false);
   const [userInfo, setUserInfo] = useState(null)
 
-  // useEffect(() => {
-  //   // Create PaymentIntent as soon as the page loads (from https://stripe.com/docs/payments/quickstart)
-  //   fetch(uri + "/create-payment-intent/", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ items: "month" }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setClientSecret(data.clientSecret));
-  // }, []);
   useEffect(()=> {isAuthenticated && getUserInfo({userEmail:user.email, setUserInfo:setUserInfo})},
     [isAuthenticated]
   )
@@ -65,32 +51,15 @@ function SignUp() {
       res.status === 201 ? navigate('/app', {state: {fromSignUp:true}}) : alert("Error saving " + res.status)
       console.log(res)
     }
-
-    const appearance = {
-      theme: 'stripe',
-    };
-    const options = {
-      clientSecret,
-      appearance,
-    };
-
+    
   return (
     <>
     <Container fluid>
-      {/* <Row>
-      <Col></Col>
-      <Col>
-          {clientSecret && (
-            <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
-          )}
-      </Col>
-      <Col></Col>
-    </Row> */}
     <Row>
+    <Alert variant='success'>Once you click on the save button, you will receive an email from Smart Meter Texas.  Click on the 'Confirm' link to authorize us to view your usage.</Alert>
+
     <Col></Col>
-    <Col className="justify-content-center">
+    <Col className="justify-content-center" lg={8} xl={6}>
     <Form validated={validated} onSubmit={onSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -126,9 +95,9 @@ function SignUp() {
       </Form.Group>
 
       <Button variant="primary" type="submit">
-         {/* onClick={onSubmit} > */}
-        Sign Up
-      </Button>
+        Save
+      </Button>      
+
     </Form>
     </Col>
     <Col></Col>
