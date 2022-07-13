@@ -71,6 +71,7 @@ function FinderMain() {
               <Col>
                 {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
                 {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
+                {(isAuthenticated)&&<Button variant="success" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
               </Col>
             </Row>
             <Row>
