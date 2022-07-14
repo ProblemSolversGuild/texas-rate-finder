@@ -23,9 +23,8 @@ const LearnMore = () => {
             </p>
             <h5>Who pays us?</h5>
             <p>
-              Our current path to monetization is to offer our service directly to consumers. This will be a free service for a limited beta period.
-              <br/><br/>
-              Once we get our payments set up, we will offer three tiers.  For $10, we will give you a 1-month license to help you find your next electric plan.  For $50, we will give you a 5-year license.  For REPs or other companies that want to use our powerful rate calculator engine, we offer a 3rd option.  For a quote on this option, reach out to kevin@theproblemsolversguild.com.
+              We currently offer our service directly to residential customers and allow our customers to <a href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">donate to us</a>.<br/><br/>
+              For REPs or other companies that want to use our powerful rate calculator engine or run an analysis on all of your current rate plans, reach out to kevin@theproblemsolversguild.com.
             </p>
           </Modal.Body>
           <Modal.Footer>
