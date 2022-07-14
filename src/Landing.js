@@ -9,8 +9,9 @@ function Landing() {
           <h1 className='display-5 text-center'>Welcome to the Texas Rate Finder!</h1>
           <div className='col-lg-6 mx-auto'>
             <p className='lead mb-4'>
-              Our mission is to help Texas Residential customers select the best electric plan for them.
-              We believe that any customer should be able to select the best plan without spending hours reading how each individual plan is different from the hundreds of other plans.  
+              Our mission is to help Texas Residential customers find the best electric plan based on their usage.
+              We believe that any customer should be able to select the best plan without spending hours reading how each individual plan is different 
+              from the hundreds of other plans.  
             </p>
             <p className='lead mb-4'>
               We appreciate you giving us an opportunity to help you find the best rate.
