@@ -48,8 +48,17 @@ function SignUp() {
         },
         body: JSON.stringify({email:tmp_email, esiid:tmp_esiid, meter_number:tmp_meter_number, current_rep_id:tmp_current_rep_id})
       })
-      res.status === 201 ? navigate('/app', {state: {fromSignUp:true}}) : alert("Error saving " + res.status)
       console.log(res)
+      switch(res.status) {
+        case 201:
+          navigate('/app', {state: {fromSignUp:true}})
+          break
+        case 412:
+          alert("ESID, Meter Number, Current Electric Provider mismatch, double-check everything matches your most recent bill and send an email to kevin@theproblemsolversguild.com with an attached bill for further troubleshooting")
+          break;
+        default:
+          alert("Error saving " + res.status)
+      }
     }
     
   return (

@@ -2,10 +2,13 @@ import { Button, Card } from 'react-bootstrap'
 import PlanSummary from './PlanSummary';
 import { InfoCircle } from 'react-bootstrap-icons';
 import { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const OutputPlanItem = ( { plan }) => {
     const [showPlanSummary,setShowPlanSummary]=useState(false)
     const pn_length = 65;
+    const uri_front = process.env.REACT_APP_FRONT;
+    const { user, loginWithRedirect } = useAuth0();
     var product_name = plan.product.replace(/_/g, ' ')
     //https://www.w3schools.com/howto/howto_css_flip_card.asp maybe would be cool to show information on the 'back' of the card like this?
     return (
@@ -17,7 +20,7 @@ const OutputPlanItem = ( { plan }) => {
                 </Card.Body>
                 <Card.Footer>
                     <small className='text-muted'>{plan.rep_company}</small><br/>
-                    <Button size='sm' variant='link' onClick={()=>setShowPlanSummary(!showPlanSummary)}><InfoCircle/>Details</Button>
+                    <Button size='sm' variant='link' onClick={plan.product.includes("Interesting Plan")?() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}:()=>setShowPlanSummary(!showPlanSummary)} ><InfoCircle/>{plan.product.includes("Interesting Plan")?'Create a free account to connect your real usage':'Details'}</Button>
                 </Card.Footer>
             </Card>
             {showPlanSummary && <PlanSummary plan={plan} showPlanSummary setShowPlanSummary={setShowPlanSummary} />}
