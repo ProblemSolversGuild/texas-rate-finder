@@ -63,7 +63,7 @@ function FinderMain() {
             </Offcanvas.Body>
           </Offcanvas>
 
-          <Col xs={12}>
+          <Col xs={12} lg={12}>
             <Row className='py-5'></Row>
             <Row>
               <Col></Col>
