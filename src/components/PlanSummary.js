@@ -65,7 +65,7 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                                 </tr>
                                 <tr>
                                     <td>Company Rating (5 is best)</td>
-                                    <td>{plan.rating}</td>
+                                    <td>{!((typeof plan.rating === 'function') || (typeof plan.rating === 'object'))?plan.rating:"Not available"}</td>
                                 </tr>
                                 <tr>
                                     <td>Special Terms</td>

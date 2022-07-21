@@ -12,8 +12,8 @@ const CheckEmail = ({}) => {
                 <strong className="me-auto">Check your email</strong>
                 <small></small>
                 </Toast.Header>
-                <Toast.Body>An Email has been sent to the email associated with your account.  Because we get your usage from Smart Meter Texas, you have to authorize us to view your electric usage.  <br/>Once you confirm the agreement, return to this page and the plans will show up.  
-                    If you don't see an email shortly after filling out your esid, meter number, and current REP, <a role='button' onClick={()=>navigate("/signup")} href="javascript:void(0);">double-check that all information you entered was accurate</a>. <br/>Otherwise, just send an email to <b>kevin@theproblemsolversguild.com</b> (attaching the most recent bill will speed up the support process)
+                <Toast.Body>An email has been sent to the email associated with your account.  Because we get your usage from Smart Meter Texas, you have to authorize us to view your electric usage.  <br/>Once you confirm the agreement, return to this page and your custom plan analysis will be available.  
+                    If you don't see an email shortly after filling out your esid, meter number, and current REP, <a role='button' onClick={()=>navigate("/signup")} href="javascript:void(0);">double-check that all information you entered was accurate</a>. <br/>If you're still having issues or need some help from us, email <b>kevin@theproblemsolversguild.com</b>. Attaching your most recent bill will speed up the support process)
                 </Toast.Body>
             </Toast>
         </ToastContainer>
