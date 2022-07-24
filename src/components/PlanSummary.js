@@ -1,8 +1,7 @@
 import { Toast, ToastContainer, Modal, Button, Table, Accordion, Row } from 'react-bootstrap';
-import { useState } from 'react';
+import StatementDetails from './StatementDetails';
 
 const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
-    const [showToast, setShowToast] = useState(true);
     const dow =  ['M','T','W','R','F','S','S']
     console.log(plan)
     return (
@@ -10,17 +9,32 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
             <Modal.Header closeButton >
                 {plan.rep_company} - {plan.product}
             </Modal.Header>
-            <Modal.Body>
-                <Accordion alwaysOpen>
-                    <Accordion.Item eventKey={0} >
-                        <Accordion.Header>Document Links</Accordion.Header>
-                        <Accordion.Body>
-                            <Button className='mx-1' href={plan.facts_url} target="_blank" >Electricity Facts Label (EFL)</Button>
-                            <Button className='mx-1' href={plan.enroll_url} target="_blank" >Enrollment Link</Button>
-                        </Accordion.Body>
+            <Modal.Body>                            
+                <Button className='mb-3 mx-1' href={plan.facts_url} target="_blank" >Electricity Facts Label (EFL)</Button>
+                <Button className='mb-3 mx-1' href={plan.enroll_url} target="_blank" >Enrollment Link</Button>
+                <Accordion alwaysOpen defaultActiveKey={0} >
+                    <Accordion.Item eventKey={3}>
+                    <Accordion.Header>Sample bills for your past year of usage</Accordion.Header>
+                    <Accordion.Body>
+                        <Table responsive className='mt-1' >
+                            <thead className='text-center'>
+                                <th>Price</th>
+                                <th>Usage</th>
+                                <th>$/kwh</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Details</th>
+                            </thead>
+                            <tbody className='text-center'>
+                                {plan.statement_breakdowns.map(rp => (
+                                    <StatementDetails rp={rp} />
+                                ))}
+                            </tbody>
+                        </Table>
+                    </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey={1}>
-                    <Accordion.Header>Price Breakdown</Accordion.Header>
+                    <Accordion.Header>Plan Summary</Accordion.Header>
                     <Accordion.Body>
                         <Table responsive bordered className='mt-2' >
                             <thead>
@@ -39,8 +53,8 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                                         <td key={rc.id}>{rc.name}</td>
                                         <td key={rc.id}>{rc.price?rc.price:rc.amount}</td>
                                         <td key={rc.id}>{rc.class_name}</td>
-                                        <td key={rc.id}>{rc.min_kwh}</td>
-                                        <td key={rc.id}>{rc.max_kwh}</td>
+                                        <td key={rc.id}>{rc.min_kwh?rc.min_kwh:rc.min_thresh}</td>
+                                        <td key={rc.id}>{rc.max_kwh?rc.max_kwh:rc.max_thresh}</td>
                                         <td key={rc.id}>{rc.days_of_week&&rc.days_of_week.map((_,d) => (dow[d]))}</td>
                                         <td key={rc.id}>{rc.start_time}</td>
                                         <td key={rc.id}>{rc.end_time}</td>
@@ -91,6 +105,7 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                         </Table>
                     </Accordion.Body>
                     </Accordion.Item>
+                    
                 </Accordion>
             </Modal.Body>
             <Modal.Footer>
