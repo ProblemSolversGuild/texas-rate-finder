@@ -3,7 +3,6 @@ import StatementDetails from './StatementDetails';
 
 const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
     const dow =  ['M','T','W','R','F','S','S']
-    console.log(plan)
     return (
         <Modal  centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
             <Modal.Header closeButton >
