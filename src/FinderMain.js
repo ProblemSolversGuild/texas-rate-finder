@@ -75,18 +75,14 @@ function FinderMain() {
             </Row>
             <Row>
               <Col></Col>
+              <Col>
               <UsageChart usageData={usage} />
-              <Col></Col>
-            </Row>
-            <Row className='px-0'>
-              <Col lg={4} className='px-0'></Col>
-              <Col className='px-1 my-1 mb-2'>
                 {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
                 {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
               </Col>
-              <Col lg={4} className='px-0'></Col>
+              <Col></Col>
             </Row>
-            <Row >
+            <Row className='mt-1'>
               <Col></Col>
               { ratePlanListLoading&&<Spinner animation="border" />}
               { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
