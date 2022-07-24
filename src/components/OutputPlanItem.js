@@ -20,7 +20,7 @@ const OutputPlanItem = ( { plan }) => {
                 </Card.Body>
                 <Card.Footer>
                     <small className='text-muted'>{plan.rep_company}</small><br/>
-                    <Button size='sm' variant='link' onClick={plan.product.includes("Interesting Plan")?() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}:()=>setShowPlanSummary(!showPlanSummary)} ><InfoCircle/>{plan.product.includes("Interesting Plan")?'Create a free account to connect your real usage':'Details'}</Button>
+                    <Button className='px-0 mx-0 border-0' size='sm' variant='link' onClick={plan.product.includes("Sample Plan")?() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}:()=>setShowPlanSummary(!showPlanSummary)} >{plan.product.includes("Sample Plan")?'Create a free account to connect your real usage':'Details'}</Button>
                 </Card.Footer>
             </Card>
             {showPlanSummary && <PlanSummary plan={plan} showPlanSummary setShowPlanSummary={setShowPlanSummary} />}

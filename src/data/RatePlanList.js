@@ -1,6 +1,6 @@
 let fakePlanList = [
     {
-      product: "Interesting Plan #1",
+      product: "Sample Plan #1",
       plan_$_per_kwh:0.10,
       contract_term:18,
       termination_fee:"150.00",
@@ -10,7 +10,7 @@ let fakePlanList = [
       facts_url:null
     },
     {
-      product: "Interesting Plan #2",
+      product: "Sample Plan #2",
       plan_$_per_kwh:0.15,
       contract_term:1,
       termination_fee:"150.00",
@@ -20,7 +20,7 @@ let fakePlanList = [
       facts_url:null
     },
     {
-      product: "Interesting Plan #3",
+      product: "Sample Plan #3",
       plan_$_per_kwh:0.18,
       contract_term:18,
       termination_fee:"150.00",
@@ -30,7 +30,7 @@ let fakePlanList = [
       facts_url:null
     },
     {
-      product: "Interesting Plan #4",
+      product: "Sample Plan #4",
       plan_$_per_kwh:0.20,
       contract_term:18,
       termination_fee:"150.00",
@@ -40,7 +40,7 @@ let fakePlanList = [
       facts_url:null
     },
     {
-      product: "Interesting Plan #5",
+      product: "Sample Plan #5",
       plan_$_per_kwh:0.20,
       contract_term:18,
       termination_fee:"150.00",
