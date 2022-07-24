@@ -71,7 +71,6 @@ function FinderMain() {
               <Col>
                 {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
                 {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
-                {(isAuthenticated)&&<Button variant="success" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
               </Col>
             </Row>
             <Row>
@@ -79,11 +78,19 @@ function FinderMain() {
               <UsageChart usageData={usage} />
               <Col></Col>
             </Row>
+            <Row className='px-0'>
+              <Col lg={4} className='px-0'></Col>
+              <Col className='px-1 my-1 mb-2'>
+                {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
+                {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
+              </Col>
+              <Col lg={4} className='px-0'></Col>
+            </Row>
             <Row >
               <Col></Col>
               { ratePlanListLoading&&<Spinner animation="border" />}
               { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
-              <Col>{userInfo && ratePlanList && userInfo.esiid && <Button className="mx-1" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
+              <Col>
               </Col>
             </Row>
           </Col>
