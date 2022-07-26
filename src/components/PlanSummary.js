@@ -1,8 +1,24 @@
+import { useState } from 'react';
 import { Toast, ToastContainer, Modal, Button, Table, Accordion, Row } from 'react-bootstrap';
 import StatementDetails from './StatementDetails';
 
 const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
     const dow =  ['M','T','W','R','F','S','S']
+    const uri = process.env.REACT_APP_URI;
+    const [planReported, setPlanReported] = useState(false)
+    const reportPlan = async (e) => {
+        e.preventDefault()
+        const res = await fetch(uri + '/plans/?status=new', {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json',
+            },
+            body: JSON.stringify(plan)
+        })
+        console.log(res.status)
+        setPlanReported(true)
+    }
+
     return (
         <Modal  centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
             <Modal.Header closeButton >
@@ -11,22 +27,25 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
             <Modal.Body>                            
                 <Button className='mb-3 mx-1' href={plan.facts_url} target="_blank" >Electricity Facts Label (EFL)</Button>
                 <Button className='mb-3 mx-1' href={plan.enroll_url} target="_blank" >Enrollment Link</Button>
+                <Button variant={planReported?'success':'danger'} className='mb-3 mx-1 float-end' size='sm' onClick={reportPlan} disabled={planReported}>{planReported?'Thank You!':'Report as Inaccurate'}</Button>
                 <Accordion alwaysOpen defaultActiveKey={0} >
                     <Accordion.Item eventKey={3}>
                     <Accordion.Header>Sample bills for your past year of usage</Accordion.Header>
                     <Accordion.Body>
                         <Table responsive className='mt-1' >
                             <thead className='text-center'>
-                                <th>Price</th>
-                                <th>Usage</th>
-                                <th>$/kwh</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Details</th>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>Usage</th>
+                                    <th>$/kwh</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Details</th>
+                                </tr>
                             </thead>
                             <tbody className='text-center'>
                                 {plan.statement_breakdowns.map(rp => (
-                                    <StatementDetails rp={rp} />
+                                    <StatementDetails key={rp.id} rp={rp} />
                                 ))}
                             </tbody>
                         </Table>
@@ -37,14 +56,16 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                     <Accordion.Body>
                         <Table responsive bordered className='mt-2' >
                             <thead>
-                                <th>Rate Component</th>
-                                <th>Price</th>
-                                <th>Type</th>
-                                <th>Min Kwh</th>
-                                <th>Max Kwh</th>
-                                <th>Days of Week</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
+                                <tr>
+                                    <th>Rate Component</th>
+                                    <th>Price</th>
+                                    <th>Type</th>
+                                    <th>Min Kwh</th>
+                                    <th>Max Kwh</th>
+                                    <th>Days of Week</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {plan.rate_components.map(rc => (
@@ -68,8 +89,10 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                     <Accordion.Body>
                         <Table responsive bordered className='mt-2'>
                             <thead>
-                                <th></th>
-                                <th>Details</th>
+                                <tr>
+                                    <th></th>
+                                    <th>Details</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>

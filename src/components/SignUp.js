@@ -48,7 +48,6 @@ function SignUp() {
         },
         body: JSON.stringify({email:tmp_email, esiid:tmp_esiid, meter_number:tmp_meter_number, current_rep_id:tmp_current_rep_id})
       })
-      console.log(res)
       switch(res.status) {
         case 201:
           navigate('/app', {state: {fromSignUp:true}})
@@ -98,7 +97,6 @@ function SignUp() {
         <Form.Label>Your Current Electric Provider</Form.Label>
         <Form.Select type="text" defaultValue={userInfo?userInfo.current_rep_id:electricProvider} onChange={(e) => setElectricProvider(e.target.value)}>
         <option disabled value selected={false}> -- select your current Electric Provider -- </option>
-        {console.log(userInfo&&userInfo.current_rep_id)}
         {repList && repList.map(rep => <option value={rep.rep_id} selected={userInfo&&rep.rep_id===userInfo.current_rep_id?true:false} >{rep.rep_name}</option> )}
         </Form.Select>
       </Form.Group>
