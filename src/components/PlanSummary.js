@@ -34,16 +34,18 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                     <Accordion.Body>
                         <Table responsive className='mt-1' >
                             <thead className='text-center'>
-                                <th>Price</th>
-                                <th>Usage</th>
-                                <th>$/kwh</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Details</th>
+                                <tr>
+                                    <th>Price</th>
+                                    <th>Usage</th>
+                                    <th>$/kwh</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Details</th>
+                                </tr>
                             </thead>
                             <tbody className='text-center'>
                                 {plan.statement_breakdowns.map(rp => (
-                                    <StatementDetails rp={rp} />
+                                    <StatementDetails key={rp.id} rp={rp} />
                                 ))}
                             </tbody>
                         </Table>
@@ -54,14 +56,16 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                     <Accordion.Body>
                         <Table responsive bordered className='mt-2' >
                             <thead>
-                                <th>Rate Component</th>
-                                <th>Price</th>
-                                <th>Type</th>
-                                <th>Min Kwh</th>
-                                <th>Max Kwh</th>
-                                <th>Days of Week</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
+                                <tr>
+                                    <th>Rate Component</th>
+                                    <th>Price</th>
+                                    <th>Type</th>
+                                    <th>Min Kwh</th>
+                                    <th>Max Kwh</th>
+                                    <th>Days of Week</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 {plan.rate_components.map(rc => (
@@ -85,8 +89,10 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                     <Accordion.Body>
                         <Table responsive bordered className='mt-2'>
                             <thead>
-                                <th></th>
-                                <th>Details</th>
+                                <tr>
+                                    <th></th>
+                                    <th>Details</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
