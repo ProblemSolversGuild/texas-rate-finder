@@ -1,8 +1,24 @@
+import { useState } from 'react';
 import { Toast, ToastContainer, Modal, Button, Table, Accordion, Row } from 'react-bootstrap';
 import StatementDetails from './StatementDetails';
 
 const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
     const dow =  ['M','T','W','R','F','S','S']
+    const uri = process.env.REACT_APP_URI;
+    const [planReported, setPlanReported] = useState(false)
+    const reportPlan = async (e) => {
+        e.preventDefault()
+        const res = await fetch(uri + '/plans/?status=new', {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json',
+            },
+            body: JSON.stringify(plan)
+        })
+        console.log(res.status)
+        setPlanReported(true)
+    }
+
     return (
         <Modal  centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
             <Modal.Header closeButton >
@@ -11,6 +27,7 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
             <Modal.Body>                            
                 <Button className='mb-3 mx-1' href={plan.facts_url} target="_blank" >Electricity Facts Label (EFL)</Button>
                 <Button className='mb-3 mx-1' href={plan.enroll_url} target="_blank" >Enrollment Link</Button>
+                <Button variant={planReported?'success':'danger'} className='mb-3 mx-1 float-end' size='sm' onClick={reportPlan} disabled={planReported}>{planReported?'Thank You!':'Report as Inaccurate'}</Button>
                 <Accordion alwaysOpen defaultActiveKey={0} >
                     <Accordion.Item eventKey={3}>
                     <Accordion.Header>Sample bills for your past year of usage</Accordion.Header>
