@@ -20,10 +20,11 @@ function NavBar() {
                         <>
                             <Dropdown>
                                 <Dropdown.Toggle variant='white' id="dropdown-custom-components">
-                                    <Image className='text-end' src={user.picture} roundedCircle height={42} />
+                                    <Image src={user.picture} roundedCircle height={42} />
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu >
+                                <Dropdown.Menu align='end' >
+                                    {/* <Dropdown.Header><small>{user.name}</small></Dropdown.Header> */}
                                     <Dropdown.Item onClick={() => navigate("/signup")}>Profile</Dropdown.Item>
                                     <Dropdown.Item onClick={() => logout({ returnTo: window.location.origin })}>Logout</Dropdown.Item>
                                 </Dropdown.Menu>
