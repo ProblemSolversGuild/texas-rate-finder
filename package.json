@@ -19,6 +19,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
     "react-vis": "^1.11.7",
+    "recharts": "^2.1.13",
     "web-vitals": "^2.1.3"
   },
   "scripts": {

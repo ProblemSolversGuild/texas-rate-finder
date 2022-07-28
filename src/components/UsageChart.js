@@ -1,18 +1,17 @@
-import './react_vis_style.css'; 
-import {XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSeries, DecorativeAxis} from 'react-vis';
+import {LineChart, XAxis, YAxis, Line, Tooltip, ResponsiveContainer, Label} from 'recharts'
 
 const UsageChart = ({ usageData }) => {
     return (
-        <XYPlot
-            xType="time"
-            width={900}
-            height={300}>
-            <VerticalGridLines width={10}/>
-            <HorizontalGridLines tickTotal={3}/>
-            <XAxis title="Past Week" tickLabelAngle={-30} />
-            <YAxis title="kWh" />
-            <LineSeries data={usageData.map(d => ({"x":new Date(d['x']),"y":d['y']}))} color={'black'} />
-        </XYPlot>
+        <ResponsiveContainer className={'align-items-center'} width={'100%'} height={'85%'}>
+            <LineChart
+                data={usageData}
+                >
+                <XAxis angle={-10} dataKey={'x'} tickFormatter={d => new Date(d).toLocaleDateString()}/>
+                <YAxis ><Label value={"kWh"} position={'insideTopRight'} offset={20} /></YAxis>
+                <Tooltip /> 
+                <Line type="monotone" dataKey="y" stroke="black" dot={false} />
+            </LineChart>
+        </ResponsiveContainer>
     );
 }
 // 
