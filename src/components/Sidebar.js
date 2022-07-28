@@ -10,7 +10,9 @@ const Sidebar = ({minRenewableContent,
                     minContractLength, 
                     maxContractLength, 
                     setMinContractLength, 
-                    setMaxContractLength
+                    setMaxContractLength,
+                    showCancelation,
+                    setShowCancelation
                 }) => {
                     const [localMinContractLength, setLocalMinContractLength] = useState(minContractLength)
                     const [localMaxContractLength, setLocalMaxContractLength] = useState(maxContractLength)
@@ -45,6 +47,11 @@ const Sidebar = ({minRenewableContent,
                             <InputGroup.Text> to </InputGroup.Text>
                             <Form.Control type="text" defaultValue={localMaxContractLength} onChange={(e) => setLocalMaxContractLength(e.target.value)} /> 
                         </InputGroup>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Check inline type="switch" defaultValue={showCancelation} onChange={(e) => setShowCancelation(e.target.checked)} />
+                        <Form.Label>Show Cancelation Fees</Form.Label>  
                     </Form.Group>
 
                     <Row>

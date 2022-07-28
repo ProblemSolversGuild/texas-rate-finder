@@ -31,6 +31,7 @@ function FinderMain() {
   const [userInfo, setUserInfo] = useState(null)
   const [userEmailWarning, setUserEmailWarning] = useState(false)
   const [usage, setUsage] = useState([{'x':0,'y':0}])
+  const [showCancelation, setShowCancelation] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(!show)
@@ -59,7 +60,9 @@ function FinderMain() {
               <Sidebar minRenewableContent={minRenewableContent} maxRenewableContent={maxRenewableContent} 
                        setMinRenewableContent={setMinRenewableContent} setMaxRenewableContent={setMaxRenewableContent} 
                        minContractLength={minContractLength} maxContractLength={maxContractLength} 
-                       setMinContractLength={setMinContractLength} setMaxContractLength={setMaxContractLength} />
+                       setMinContractLength={setMinContractLength} setMaxContractLength={setMaxContractLength} 
+                       showCancelation={showCancelation} setShowCancelation={setShowCancelation}
+                    />
             </Offcanvas.Body>
           </Offcanvas>
 
@@ -86,7 +89,7 @@ function FinderMain() {
             <Row className='mt-1'>
               <Col></Col>
               { ratePlanListLoading&&<Spinner animation="border" />}
-              { ratePlanList && <OutputPlanList planList={ratePlanList} minContractLength={minContractLength} maxContractLength={maxContractLength} minRenewableContent maxRenewableContent />}
+              { ratePlanList && <OutputPlanList planList={ratePlanList} showCancelation={showCancelation} />}
               <Col>
               </Col>
             </Row>
