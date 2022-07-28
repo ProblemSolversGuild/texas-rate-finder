@@ -50,7 +50,7 @@ const Sidebar = ({minRenewableContent,
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Check inline type="switch" defaultValue={showCancelation} onChange={(e) => setShowCancelation(e.target.checked)} />
+                        <Form.Check inline type="switch" checked={showCancelation} onChange={(e) => setShowCancelation(e.target.checked)} />
                         <Form.Label>Show Cancelation Fees</Form.Label>  
                     </Form.Group>
 
