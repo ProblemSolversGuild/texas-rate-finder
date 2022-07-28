@@ -103,7 +103,8 @@ function SignUp() {
 
       <Button variant="primary" type="submit">
         Save
-      </Button>      
+      </Button>
+      <Button variant="" onClick={() => navigate("/app")}>Cancel</Button>
 
     </Form>
     </Col>
