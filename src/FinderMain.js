@@ -64,23 +64,24 @@ function FinderMain() {
           </Offcanvas>
 
           <Col xs={12} lg={12}>
-            <Row className='py-5'></Row>
+            <Row className='py-2'></Row>
             <Row>
               <Col></Col>
               <Col></Col>
               <Col>
+
+              </Col>
+            </Row>
+            <Row style={{height:'30rem'}}>
+              <Col ></Col>
+              <Col xl={9} xxl={6}>
+                <UsageChart usageData={usage} />
+                {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
+                {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}                
                 {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
                 {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
               </Col>
-            </Row>
-            <Row>
-              <Col ></Col>
-              <Col xl={9} xxl={6}>
-              <UsageChart usageData={usage} />
-                {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
-                {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
-              </Col>
-              <Col ></Col>
+              <Col></Col>
             </Row>
             <Row className='mt-1'>
               <Col></Col>
