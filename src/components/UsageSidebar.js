@@ -1,38 +1,27 @@
 import React from "react";
-import {Form, InputGroup, Col, Row, Button, ButtonGroup} from "react-bootstrap";
+import {Form, InputGroup, Col, Row, Button, ButtonGroup, ToggleButtonGroup, ToggleButton} from "react-bootstrap";
 import { parseISO } from 'date-fns'
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../FinderMain.css'
 
-const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsageEndDate, usageResolution, setUsageResolution, smoothAmt, setSmoothAmt }) => {
-                    const [localUsageResolution, setLocalusageResolution] = useState(usageResolution)
-                    const [localUsageStartDate, setLocalUsageStartDate] = useState(usageStartDate)
-                    const [localUsageEndDate, setLocalUsageEndDate] = useState(usageEndDate)
-
-                    const onSubmit = (e) => {
-                        e.preventDefault()
-                        setUsageResolution(localUsageResolution)
-                        setUsageStartDate(localUsageStartDate)
-                        setUsageEndDate(localUsageEndDate)
-                      }
-                      console.log(usageStartDate)
-                      console.log(usageEndDate)
+const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsageEndDate, usageResolution, setUsageResolution, smoothAmt, setSmoothAmt, chartType, setChartType }) => {
+    console.log(usageStartDate)
+    console.log(usageEndDate)
     return (
         <>
-            
-            <Col> {/* className="col-md-2 d-none d-md-block bg-light sidebar"> */}
-                <Form className="mx-3" onSubmit={onSubmit}>
+            <Col>
+                <Form className="mx-3">
                     <Form.Group className="mb-3">
                         <Form.Label>Chart Resolution</Form.Label>
                         <InputGroup >
-                            <ButtonGroup>
-                                <Button variant="outline-secondary" onClick={e=>setUsageResolution(null)}>15 minute</Button>
-                                <Button variant="outline-secondary" onClick={e=>setUsageResolution('1_hour')}>1 hour</Button>
-                                <Button variant="outline-secondary" onClick={e=>setUsageResolution('1_day')}>1 day</Button>
-                                <Button variant="outline-secondary" onClick={e=>setUsageResolution('1_month')}>1 month</Button>
-                            </ButtonGroup>
+                            <ToggleButtonGroup defaultValue={['']} name={'usageResolution'} onChange={value => setUsageResolution(value)}>
+                                <ToggleButton id={'usageResolution-1'} name={'usageResolution'} value={''} variant="outline-secondary" >15 minute</ToggleButton>
+                                <ToggleButton id={'usageResolution-2'} name={'usageResolution'} value={'1_hour'} variant="outline-secondary" >1 hour</ToggleButton>
+                                <ToggleButton id={'usageResolution-3'} name={'usageResolution'} value={'1_day'} variant="outline-secondary" >1 day</ToggleButton>
+                                <ToggleButton id={'usageResolution-4'} name={'usageResolution'} value={'1_month'} variant="outline-secondary" >1 month</ToggleButton>
+                            </ToggleButtonGroup>
                         </InputGroup>
                     </Form.Group>
 
@@ -46,14 +35,19 @@ const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsag
                     </Form.Group>
 
                     <Form.Group className="mb-3">
+                            <ToggleButtonGroup defaultValue={['line']} name={'chartType'} onChange={value => setChartType(value)}>
+                                <ToggleButton id={'chartType-1'} name={'chartType'} value={'line'} variant="outline-secondary" >Line Chart</ToggleButton>
+                                <ToggleButton id={'chartType-2'} name={'chartType'} value={'bar'} variant="outline-secondary" >Bar Chart</ToggleButton>
+                                <ToggleButton id={'chartType-3'} name={'chartType'} value={'table'} variant="outline-secondary" >Table</ToggleButton>
+                            </ToggleButtonGroup>
+                    </Form.Group>                    
+                    
+                    <Form.Group className="mb-3">
                         <Form.Label>Smoothing Amount</Form.Label>
                         <InputGroup >
                             <Form.Control type="text" defaultValue={smoothAmt} onChange={(e) => setSmoothAmt(e.target.value)} /> 
                         </InputGroup>
                     </Form.Group>
-                    <Row>
-                        <Col></Col><Col><Button variant="primary" type="submit">Refresh Plan List</Button></Col>
-                    </Row>
                 </Form>
             </Col>
         </>

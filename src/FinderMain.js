@@ -32,6 +32,7 @@ function FinderMain() {
   const [userEmailWarning, setUserEmailWarning] = useState(false)
   const [usage, setUsage] = useState([{'x':0,'y':0}])
   const [showCancelation, setShowCancelation] = useState(false)
+  const [usageIsLoading, setUsageIsLoading] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(!show)
@@ -40,7 +41,7 @@ function FinderMain() {
     [isAuthenticated]
   )
 
-  useEffect(()=> {userInfo && userInfo.esiid?getUsage({esiid:userInfo.esiid, setUsage, setUserEmailWarning}):getFakeUsage({esiid:'1008901023808934750100', setUsage})},
+  useEffect(()=> {userInfo && userInfo.esiid?getUsage({esiid:userInfo.esiid, setUsage, setUserEmailWarning, setUsageIsLoading:setUsageIsLoading}):getFakeUsage({esiid:'1008901023808934750100', setUsage, setUsageIsLoading:setUsageIsLoading})},
   [userInfo]
   )
 
@@ -67,28 +68,27 @@ function FinderMain() {
           </Offcanvas>
 
           <Col xs={12} lg={12}>
-            <Row className='py-2'></Row>
-            <Row>
+          <Row className='pt-4'>
               <Col></Col>
-              <Col></Col>
-              <Col>
-
-              </Col>
-            </Row>
-            <Row style={{height:'30rem'}}>
-              <Col ></Col>
               <Col xl={9} xxl={6}>
-                <UsageChart usageData={usage} />
-                {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Plan Filters":"Show Plan Filters"}</Button>}
-                {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}                
-                {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
-                {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
+              {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Filters":"Show Filters"}</Button>}
+              {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
+              {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
+              {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
+              </Col>
+              <Col></Col>
+            </Row> 
+            <Row className='pt-2' style={{height:'30rem'}}>
+              <Col></Col>
+              <Col xl={9} xxl={6} className='text-center' >
+                {usageIsLoading&&<Spinner animation="border" variant="secondary" />}
+                {!usageIsLoading&&<UsageChart usageData={usage} />}
               </Col>
               <Col></Col>
             </Row>
             <Row className='mt-1'>
               <Col></Col>
-              { ratePlanListLoading&&<Spinner animation="border" />}
+              { ratePlanListLoading&&<Spinner animation="border" variant="secondary" />}
               { ratePlanList && <OutputPlanList planList={ratePlanList} showCancelation={showCancelation} />}
               <Col>
               </Col>
