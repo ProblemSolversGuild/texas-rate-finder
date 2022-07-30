@@ -38,7 +38,7 @@ const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsag
                             <ToggleButtonGroup defaultValue={['line']} name={'chartType'} onChange={value => setChartType(value)}>
                                 <ToggleButton id={'chartType-1'} name={'chartType'} value={'line'} variant="outline-secondary" >Line Chart</ToggleButton>
                                 <ToggleButton id={'chartType-2'} name={'chartType'} value={'bar'} variant="outline-secondary" >Bar Chart</ToggleButton>
-                                <ToggleButton id={'chartType-3'} name={'chartType'} value={'table'} variant="outline-secondary" >Table</ToggleButton>
+                                <ToggleButton id={'chartType-3'} name={'chartType'} value={'table'} variant="outline-secondary" disabled >Table</ToggleButton>
                             </ToggleButtonGroup>
                     </Form.Group>                    
                     
