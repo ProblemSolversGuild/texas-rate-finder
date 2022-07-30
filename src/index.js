@@ -7,6 +7,7 @@ import './index.css';
 import NavBar from './NavBar'
 import Landing from './Landing';
 import FinderMain from './FinderMain';
+import UsageMain from './UsageMain';
 import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
 
@@ -31,6 +32,7 @@ ReactDOM.render(
           <Route path="/app" element={<FinderMain />} />
           <Route path="/" element={<Landing />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/usage" element={<UsageMain />} />
         </Routes>
       </Auth0Provider>
     </HashRouter>
