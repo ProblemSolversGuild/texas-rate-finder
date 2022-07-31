@@ -18,9 +18,12 @@ import LogRocket from 'logrocket';
 //   </React.StrictMode>,
 //   document.getElementById('root')
 // );
+const uri = process.env.REACT_APP_URI;
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-LogRocket.init('dcw8xd/texas-rate-finder');
+if (uri!='https://kbird-desktop:7576') {
+  LogRocket.init('dcw8xd/texas-rate-finder');
+}
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
