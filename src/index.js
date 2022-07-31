@@ -10,6 +10,7 @@ import FinderMain from './FinderMain';
 import UsageMain from './UsageMain';
 import SignUp from './components/SignUp';
 import reportWebVitals from './reportWebVitals';
+import LogRocket from 'logrocket';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -19,6 +20,7 @@ import reportWebVitals from './reportWebVitals';
 // );
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+LogRocket.init('dcw8xd/texas-rate-finder');
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
