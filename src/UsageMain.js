@@ -25,8 +25,8 @@ function UsageMain() {
   const [userInfo, setUserInfo] = useState(null)
   const [userEmailWarning, setUserEmailWarning] = useState(false)
   const [usage, setUsage] = useState([{'x':0,'y':0}])
-  const [usageStartDate, setUsageStartDate] = useState(new Date('2022-07-21'))
-  const [usageEndDate, setUsageEndDate] = useState(new Date('2022-07-28'))
+  const [usageStartDate, setUsageStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 8)))
+  const [usageEndDate, setUsageEndDate] = useState(new Date(new Date().setDate(new Date().getDate() - 1)))
   const [usageResolution, setUsageResolution] = useState(null)
   const [smoothAmt, setSmoothAmt] = useState(0)
   const [chartType, setChartType] = useState('line')
@@ -48,7 +48,7 @@ function UsageMain() {
   return (
     <>
       <Container fluid>
-        <Alert dismissible variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>
+      {(isAuthenticated&&usageIsLoading)&&<Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>}
         <Row>
           
           <Offcanvas show={show} onHide={handleClose} placement="end">

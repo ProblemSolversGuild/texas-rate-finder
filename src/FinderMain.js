@@ -66,7 +66,7 @@ function FinderMain() {
                     />
             </Offcanvas.Body>
           </Offcanvas>
-          <Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>
+          {(isAuthenticated&&(usageIsLoading||ratePlanListLoading))&&<Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>}
 
           <Col xs={12} lg={12}>
           <Row className='pt-4'>
@@ -75,7 +75,7 @@ function FinderMain() {
               {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Filters":"Show Filters"}</Button>}
               {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
               {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
-              {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
+              {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account to connect your real usage!</Button>}
               </Col>
               <Col></Col>
             </Row> 
