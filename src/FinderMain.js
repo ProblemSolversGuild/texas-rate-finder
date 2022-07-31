@@ -4,7 +4,7 @@ import UsageChart from './components/UsageChart'
 import Sidebar from './components/Sidebar';
 import CheckEmail from './components/CheckEmail'
 import SignUp from './components/SignUp';
-import { Button, Col, Row, Container, Offcanvas, ButtonGroup, Spinner, Toast } from 'react-bootstrap';
+import { Button, Col, Row, Container, Offcanvas, ButtonGroup, Spinner, Toast, Alert } from 'react-bootstrap';
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -66,6 +66,7 @@ function FinderMain() {
                     />
             </Offcanvas.Body>
           </Offcanvas>
+          <Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>
 
           <Col xs={12} lg={12}>
           <Row className='pt-4'>
