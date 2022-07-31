@@ -5,12 +5,19 @@
 //       current_electric_provider:18,
 //       additional_comments:"150.00"
 //     }
+import LogRocket from 'logrocket';
 
 export async function getUserInfo({userEmail, setUserInfo}) {
     const uri = process.env.REACT_APP_URI;
-    let usageData = null
+    let userData = null
     // console.log(uri+"/users/"+userEmail)
     const response = await fetch(uri+"/users/"+userEmail)
-    usageData = await response.json()
-    response.status === 404? setUserInfo(null): setUserInfo(usageData)
+    userData = await response.json()
+    if (uri!='https://kbird-desktop:7576') {
+      LogRocket.identify(userEmail, {
+        name: userData.name,
+        email: userData.email
+      });
+    }
+    response.status === 404? setUserInfo(null): setUserInfo(userData)
   }

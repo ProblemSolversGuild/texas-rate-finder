@@ -16,7 +16,7 @@ const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsag
                     <Form.Group className="mb-3">
                         <Form.Label>Chart Resolution</Form.Label>
                         <InputGroup >
-                            <ToggleButtonGroup defaultValue={['']} name={'usageResolution'} onChange={value => setUsageResolution(value)}>
+                            <ToggleButtonGroup defaultValue={[usageResolution]} name={'usageResolution'} onChange={value => setUsageResolution(value)}>
                                 <ToggleButton id={'usageResolution-1'} name={'usageResolution'} value={''} variant="outline-secondary" >15 minute</ToggleButton>
                                 <ToggleButton id={'usageResolution-2'} name={'usageResolution'} value={'1_hour'} variant="outline-secondary" >1 hour</ToggleButton>
                                 <ToggleButton id={'usageResolution-3'} name={'usageResolution'} value={'1_day'} variant="outline-secondary" >1 day</ToggleButton>
@@ -24,24 +24,28 @@ const UsageSidebar = ({ usageStartDate, setUsageStartDate, usageEndDate, setUsag
                             </ToggleButtonGroup>
                         </InputGroup>
                     </Form.Group>
-
                     <Form.Group className="mb-3">
-                        <Form.Label>Date Range</Form.Label>
-                        <InputGroup> 
-                            <DatePicker selected={usageStartDate} onChange={(date) => setUsageStartDate(date)} />
-                            <InputGroup.Text> to </InputGroup.Text>
-                            <DatePicker selected={usageEndDate} onChange={(date) => setUsageEndDate(date)} />
-                        </InputGroup>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                            <ToggleButtonGroup defaultValue={['line']} name={'chartType'} onChange={value => setChartType(value)}>
+                        <Form.Label>Chart Style</Form.Label>
+                        <InputGroup >
+                            <ToggleButtonGroup defaultValue={[chartType]} name={'chartType'} onChange={value => setChartType(value)}>
                                 <ToggleButton id={'chartType-1'} name={'chartType'} value={'line'} variant="outline-secondary" >Line Chart</ToggleButton>
                                 <ToggleButton id={'chartType-2'} name={'chartType'} value={'bar'} variant="outline-secondary" >Bar Chart</ToggleButton>
                                 <ToggleButton id={'chartType-3'} name={'chartType'} value={'table'} variant="outline-secondary" disabled >Table</ToggleButton>
                             </ToggleButtonGroup>
-                    </Form.Group>                    
-                    
+                        </InputGroup>
+                    </Form.Group>  
+                    <Form.Group className="mb-3">
+                        <Form.Label>Beginning Date Range</Form.Label>
+                        <InputGroup> 
+                            <DatePicker selected={usageStartDate} onChange={(date) => setUsageStartDate(date)} />
+                        </InputGroup>
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>End Date Range</Form.Label>
+                        <InputGroup> 
+                            <DatePicker selected={usageEndDate} onChange={(date) => setUsageEndDate(date)} />
+                        </InputGroup>
+                    </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Smoothing Amount</Form.Label>
                         <InputGroup >
