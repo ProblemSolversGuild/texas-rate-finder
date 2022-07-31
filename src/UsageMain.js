@@ -5,7 +5,7 @@ import UsageBarChart from './components/UsageBarChart'
 import UsageSidebar from './components/UsageSidebar';
 import CheckEmail from './components/CheckEmail'
 import SignUp from './components/SignUp';
-import { Button, Col, Row, Container, Offcanvas, ButtonGroup, Spinner, Toast } from 'react-bootstrap';
+import { Button, Col, Row, Container, Offcanvas, ButtonGroup, Spinner, Toast, Alert } from 'react-bootstrap';
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
@@ -48,6 +48,7 @@ function UsageMain() {
   return (
     <>
       <Container fluid>
+        <Alert dismissible variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>
         <Row>
           
           <Offcanvas show={show} onHide={handleClose} placement="end">
