@@ -27,7 +27,7 @@ function UsageMain() {
   const [usage, setUsage] = useState([{'x':0,'y':0}])
   const [usageStartDate, setUsageStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 8)))
   const [usageEndDate, setUsageEndDate] = useState(new Date(new Date().setDate(new Date().getDate() - 1)))
-  const [usageResolution, setUsageResolution] = useState(null)
+  const [usageResolution, setUsageResolution] = useState('')
   const [smoothAmt, setSmoothAmt] = useState(0)
   const [chartType, setChartType] = useState('line')
   const [usageIsLoading, setUsageIsLoading] = useState(false)
