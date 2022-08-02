@@ -18,6 +18,7 @@ function SignUp() {
   const [repList, setRepList] = useState(null)
   const [validated, setValidated] = useState(false);
   const [userInfo, setUserInfo] = useState(null)
+  const [errorPopup, setErrorPopup] = useState(false)
 
   useEffect(()=> {isAuthenticated && getUserInfo({userEmail:user.email, setUserInfo:setUserInfo})},
     [isAuthenticated]
@@ -40,7 +41,7 @@ function SignUp() {
     let tmp_esiid = esiid?esiid:userInfo.esiid
     let tmp_meter_number = meterNumber?meterNumber:userInfo.meter_number
     let tmp_current_rep_id = electricProvider?electricProvider:userInfo.current_rep_id
-    console.log({tmp_email, esiid, meterNumber, electricProvider})
+    console.log({tmp_email, tmp_esiid, tmp_meter_number, tmp_current_rep_id})
     const res = await fetch(uri + '/users', {
         method: 'POST',
         headers: {
@@ -53,13 +54,12 @@ function SignUp() {
           navigate('/app', {state: {fromSignUp:true}})
           break
         case 412:
-          alert("ESID, Meter Number, Current Electric Provider mismatch, double-check everything matches your most recent bill and send an email to kevin@theproblemsolversguild.com with an attached bill for further troubleshooting")
+          setErrorPopup(true)
           break;
         default:
           alert("Error saving " + res.status)
       }
     }
-    
   return (
     <>
     <Container fluid>
@@ -100,7 +100,7 @@ function SignUp() {
         {repList && repList.map(rep => <option value={rep.rep_id} selected={userInfo&&rep.rep_id===userInfo.current_rep_id?true:false} >{rep.rep_name}</option> )}
         </Form.Select>
       </Form.Group>
-
+      {errorPopup&&<Alert variant="danger">The combination of ESID, Meter Number, and Current Electric Provider is not accurate according to the Smart Meter Texas System. Please double-check everything matches your most recent bill. If the problem persists, send an email to kevin@theproblemsolversguild.com with an attached bill for further troubleshooting.</Alert>}
       <Button variant="primary" type="submit">
         Save
       </Button>
