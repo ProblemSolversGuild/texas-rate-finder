@@ -1,5 +1,7 @@
 let fakePlanList = [
     {
+      id_key: 1, 
+      version: 0, 
       product: "Sample Plan #1",
       plan_$_per_kwh:0.10,
       contract_term:18,
@@ -10,6 +12,8 @@ let fakePlanList = [
       facts_url:null
     },
     {
+      id_key: 2, 
+      version: 0, 
       product: "Sample Plan #2",
       plan_$_per_kwh:0.15,
       contract_term:1,
@@ -20,6 +24,8 @@ let fakePlanList = [
       facts_url:null
     },
     {
+      id_key: 3, 
+      version: 0, 
       product: "Sample Plan #3",
       plan_$_per_kwh:0.18,
       contract_term:18,
@@ -30,6 +36,8 @@ let fakePlanList = [
       facts_url:null
     },
     {
+      id_key: 4, 
+      version: 0, 
       product: "Sample Plan #4",
       plan_$_per_kwh:0.20,
       contract_term:18,
@@ -40,6 +48,8 @@ let fakePlanList = [
       facts_url:null
     },
     {
+      id_key: 5, 
+      version: 0, 
       product: "Sample Plan #5",
       plan_$_per_kwh:0.20,
       contract_term:18,

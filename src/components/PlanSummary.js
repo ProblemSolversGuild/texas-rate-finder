@@ -46,8 +46,8 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                                 </tr>
                             </thead>
                             <tbody className='text-center'>
-                                {plan.statement_breakdowns.map(rp => (
-                                    <StatementDetails key={rp.id} rp={rp} />
+                                {plan.statement_breakdowns.map(breakdown_month => (
+                                    <StatementDetails key={breakdown_month.start_dttm} rp={breakdown_month} />
                                 ))}
                             </tbody>
                         </Table>
@@ -71,15 +71,15 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                             </thead>
                             <tbody>
                                 {plan.rate_components.map(rc => (
-                                    <tr>
-                                        <td key={rc.id}>{rc.name}</td>
-                                        <td key={rc.id}>{rc.price?rc.price:rc.amount}</td>
-                                        <td key={rc.id}>{rc.class_name}</td>
-                                        <td key={rc.id}>{rc.min_kwh?rc.min_kwh:rc.min_thresh}</td>
-                                        <td key={rc.id}>{rc.max_kwh?rc.max_kwh:rc.max_thresh}</td>
-                                        <td key={rc.id}>{rc.days_of_week&&rc.days_of_week.map((_,d) => (dow[d]))}</td>
-                                        <td key={rc.id}>{rc.start_time}</td>
-                                        <td key={rc.id}>{rc.end_time}</td>
+                                    <tr key={rc.name+rc.price}>
+                                        <td>{rc.name}</td>
+                                        <td>{rc.price?rc.price:rc.amount}</td>
+                                        <td>{rc.class_name}</td>
+                                        <td>{rc.min_kwh?rc.min_kwh:rc.min_thresh}</td>
+                                        <td>{rc.max_kwh?rc.max_kwh:rc.max_thresh}</td>
+                                        <td>{rc.days_of_week&&rc.days_of_week.map((_,d) => (dow[d]))}</td>
+                                        <td>{rc.start_time}</td>
+                                        <td>{rc.end_time}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -129,7 +129,6 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
                         </Table>
                     </Accordion.Body>
                     </Accordion.Item>
-                    
                 </Accordion>
             </Modal.Body>
             <Modal.Footer>
