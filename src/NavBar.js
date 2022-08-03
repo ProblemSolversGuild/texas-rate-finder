@@ -13,15 +13,15 @@ function NavBar() {
             <Navbar variant="light" bg='light' sticky='top' >
                 <Container>
                     <Navbar.Brand onClick={()=>navigate("/app")}>
-                        <Image src='logo192.png' height={64} className="d-inline-flex align-middle" />{' '}
+                        <Image src='logo192.png' height={64} className="d-inline-flex align-middle" alt={'logo-bulbee'} />{' '}
                         <div className='my-0 h1 d-inline-block align-middle'>Texas Rate Finder</div>
                     </Navbar.Brand>
                     
                     {isAuthenticated?
                         <>
                             <Dropdown>
-                                <Dropdown.Toggle variant='white' id="dropdown-custom-components">
-                                    <Image src={user.picture} roundedCircle height={42} />
+                                <Dropdown.Toggle variant='white' id="dropdown-custom-components" title={'user-options'}>
+                                    <Image src={user.picture} roundedCircle height={42} alt={'user-photo'} />  
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu align='end' >
