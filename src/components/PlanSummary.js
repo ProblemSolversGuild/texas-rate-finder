@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Toast, ToastContainer, Modal, Button, Table, Accordion, Row } from 'react-bootstrap';
+import { Toast, ToastContainer, Modal, Button, Table, Accordion, Row, Alert } from 'react-bootstrap';
 import StatementDetails from './StatementDetails';
 
 const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
@@ -20,13 +20,15 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
     }
 
     return (
-        <Modal  centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
+        <Modal centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
             <Modal.Header closeButton >
                 {plan.rep_company} - {plan.product}
             </Modal.Header>
-            <Modal.Body>                            
+            <Modal.Body>
+                <Alert variant="info">If this tool saved you time or money, we would really appreciate a donation to help us continue improving the rate finder. If you aren't able to donate, tell your friends to check out our site! Lastly, if you have any feedback (positive or negative), we would love to hear from you.  Send an email to kevin@theproblemsolversguild.com</Alert>
                 <Button className='mb-3 mx-1' href={plan.facts_url} target="_blank" >Electricity Facts Label (EFL)</Button>
                 <Button className='mb-3 mx-1' href={plan.enroll_url} target="_blank" >Enrollment Link</Button>
+                <Button className="mb-3 mx-1" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate Now</Button>
                 <Button variant={planReported?'success':'danger'} className='mb-3 mx-1 float-end' size='sm' onClick={reportPlan} disabled={planReported}>{planReported?'Thank You!':'Report as Inaccurate'}</Button>
                 <Accordion alwaysOpen defaultActiveKey={0} >
                     <Accordion.Item eventKey={3}>
