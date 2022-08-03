@@ -20,8 +20,12 @@ function SignUp() {
   const [userInfo, setUserInfo] = useState(null)
   const [errorPopup, setErrorPopup] = useState(false)
 
-  useEffect(()=> {isAuthenticated && getUserInfo({userEmail:user.email, setUserInfo:setUserInfo})},
+  useEffect(() => {isAuthenticated && getUserInfo({userEmail:user.email, setUserInfo:setUserInfo})},
     [isAuthenticated]
+  )
+
+  useEffect(() => {userInfo && setElectricProvider(userInfo.current_rep_id)},
+    [userInfo]
   )
 
   useEffect(()=> {getRepList({setRepList})},
@@ -95,10 +99,10 @@ function SignUp() {
 
       <Form.Group className="mb-3">
         <Form.Label>Your Current Electric Provider</Form.Label>
-        <Form.Select type="text" defaultValue={userInfo?userInfo.current_rep_id:electricProvider} onChange={(e) => setElectricProvider(e.target.value)}>
-        <option disabled value selected={false}> -- select your current Electric Provider -- </option>
-        {repList && repList.map(rep => <option value={rep.rep_id} selected={userInfo&&rep.rep_id===userInfo.current_rep_id?true:false} >{rep.rep_name}</option> )}
-        </Form.Select>
+        <Form.Control required as="select" type="select" name="electric_provider" value={electricProvider} onChange={(e) => setElectricProvider(e.target.value)} >
+          <option value="">- select your current Electric Provider -</option>
+          {repList && repList.map(rep => <option value={rep.rep_id}>{rep.rep_name}</option> )}
+        </Form.Control>
       </Form.Group>
       {errorPopup&&<Alert variant="danger">The combination of ESID, Meter Number, and Current Electric Provider is not accurate according to the Smart Meter Texas System. Please double-check everything matches your most recent bill. If the problem persists, send an email to kevin@theproblemsolversguild.com with an attached bill for further troubleshooting.</Alert>}
       <Button variant="primary" type="submit">
