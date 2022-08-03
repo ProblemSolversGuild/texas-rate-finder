@@ -101,7 +101,7 @@ function SignUp() {
         <Form.Label>Your Current Electric Provider</Form.Label>
         <Form.Control required as="select" type="select" name="electric_provider" value={electricProvider} onChange={(e) => setElectricProvider(e.target.value)} >
           <option value="">- select your current Electric Provider -</option>
-          {repList && repList.map(rep => <option value={rep.rep_id}>{rep.rep_name}</option> )}
+          {repList && repList.map(rep => <option key={rep.rep_id+rep.rep_name} value={rep.rep_id}>{rep.rep_name}</option> )}
         </Form.Control>
       </Form.Group>
       {errorPopup&&<Alert variant="danger">The combination of ESID, Meter Number, and Current Electric Provider is not accurate according to the Smart Meter Texas System. Please double-check everything matches your most recent bill. If the problem persists, send an email to kevin@theproblemsolversguild.com with an attached bill for further troubleshooting.</Alert>}
