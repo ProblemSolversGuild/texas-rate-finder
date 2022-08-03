@@ -16,7 +16,7 @@ function Landing() {
             <p className='lead mb-4'>
               The Texas Rate Finder is an ad-free, donation driven tool that allows you to quickly see what electric plan is best for you based on your historical usage. 
               This tool analyzes all of the plans available on the <a href='powertochoose.org' target="_blank" >Power To Choose</a> website using the 15-minute usage data from <a href='smartmetertexas.com' target="_blank">Smart Meter Texas</a>.  
-              Using 15-minute usage data means you can see the top resutls based on your usage whether that plan contains free nights & weekends, usage credits at 1000kWh, or tiered usage charges.  You will get a breakdown of all these plans and be able to decide which one works best for you
+              Using 15-minute usage data means you can see the top results based on your usage whether that plan contains free nights & weekends, usage credits at 1000kWh, or tiered usage charges.  You will get a breakdown of all these plans and be able to decide which one works best for you
             </p>
             <div className='d-grid gap-2 d-sm-flex justify-content-sm-center'>
               <LearnMore />

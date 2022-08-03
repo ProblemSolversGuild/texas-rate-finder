@@ -19,10 +19,10 @@ const StatementDetails = ({rp}) => {
             <td key={rp.id} colSpan={6}>
                 <Table responsive bordered className='mt-2' >
                     <tbody>
-                        {rp.detailed_charges.map((rc) => (
-                        <tr>
-                            <td className='text-end'>{rc.name}</td>
-                            <td className='text-end'>${rc.charge.toFixed(2)}</td>
+                        {rp.detailed_charges.map((charge) => (
+                        <tr key={charge.name+charge.charge}>
+                            <td className='text-end'>{charge.name}</td>
+                            <td className='text-end'>${charge.charge.toFixed(2)}</td>
                         </tr>))}
                     </tbody>
                 </Table>

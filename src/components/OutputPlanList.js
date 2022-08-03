@@ -5,8 +5,8 @@ const OutputPlanList = ( { planList, showCancelation }) => {
     
     return (
         <>
-            {planList.slice(0,display_n_items).map(plan => (
-                <OutputPlanItem plan={plan} showCancelation={showCancelation} />
+            {planList.slice(0,display_n_items).map(plan => ( 
+                <OutputPlanItem key={plan.id_key} plan={plan} showCancelation={showCancelation} />
             ))
             }
         </>

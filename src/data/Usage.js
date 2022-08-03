@@ -4,9 +4,7 @@ export async function getUsage({ esiid, setUsage, setUserEmailWarning, setUsageI
     setUsageIsLoading(true)
     const uri = process.env.REACT_APP_URI;
     let usageData = null
-    console.log("getting data for " + esiid)
     let usageUrl = uri+"/usages/"+esiid+((usageEndDate||usageStartDate||usageResolution||smoothAmt)?"?":"")+((usageStartDate)?"start_date="+usageStartDate:"")+((usageEndDate)?"&end_date="+usageEndDate:"")+((usageResolution)?"&resolution="+usageResolution:"")+((smoothAmt)?"&smooth_amt="+smoothAmt:"")
-    console.log(usageUrl)
     const response = await fetch(usageUrl)
     usageData = await response.json()
     if (response.status === 403) {
