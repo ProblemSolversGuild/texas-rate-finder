@@ -22,7 +22,7 @@ const PlanSummary = ({plan, showPlanSummary, setShowPlanSummary}) => {
     return (
         <Modal centered show={showPlanSummary} onHide={() => setShowPlanSummary(!showPlanSummary)} size='lg' > 
             <Modal.Header closeButton >
-                {plan.rep_company} - {plan.product}
+                {plan.rep_company_display?plan.rep_company_display:plan.rep_company} - {plan.product_display?plan.product_display:plan.product}
             </Modal.Header>
             <Modal.Body>
                 <Alert variant="info">If this tool saved you time or money, we would really appreciate a donation to help us continue improving the rate finder. If you aren't able to donate, tell your friends to check out our site! Lastly, if you have any feedback (positive or negative), we would love to hear from you.  Send an email to kevin@theproblemsolversguild.com</Alert>

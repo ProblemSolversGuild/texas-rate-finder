@@ -2,7 +2,7 @@ import {LineChart, XAxis, YAxis, Line, Tooltip, ResponsiveContainer, Label} from
 
 const UsageChart = ({ usageData }) => {
     return (
-        <ResponsiveContainer className={'align-items-center'} width={'100%'} height={'85%'}>
+        <ResponsiveContainer className={'align-items-center'} width={'100%'} height={'100%'}>
             <LineChart
                 data={usageData}
                 >
