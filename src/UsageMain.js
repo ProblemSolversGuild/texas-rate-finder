@@ -2,6 +2,7 @@ import './FinderMain.css';
 import OutputPlanList from './components/OutputPlanList'
 import UsageChart from './components/UsageChart'
 import UsageBarChart from './components/UsageBarChart'
+import UsageTable from './components/UsageTable'
 import UsageSidebar from './components/UsageSidebar';
 import CheckEmail from './components/CheckEmail'
 import SignUp from './components/SignUp';
@@ -14,6 +15,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { getUsage, getFakeUsage } from './data/Usage';
 import { getRatePlanList, getFakeRatePlanList } from './data/RatePlanList';
 import { getUserInfo } from './data/UserInfo';
+import { ArrowsAngleContract } from 'react-bootstrap-icons';
 
 function UsageMain() {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function UsageMain() {
   const uri_front = process.env.REACT_APP_FRONT;
   const [userInfo, setUserInfo] = useState(null)
   const [userEmailWarning, setUserEmailWarning] = useState(false)
-  const [usage, setUsage] = useState([{'x':0,'y':0}])
+  const [usage, setUsage] = useState([{'x':'2022-08-03T00:00:00','y':0}])
   const [usageStartDate, setUsageStartDate] = useState(new Date(new Date().setDate(new Date().getDate() - 8)))
   const [usageEndDate, setUsageEndDate] = useState(new Date(new Date().setDate(new Date().getDate() - 1)))
   const [usageResolution, setUsageResolution] = useState('')
@@ -48,9 +50,7 @@ function UsageMain() {
   return (
     <>
       <Container fluid>
-      {(isAuthenticated&&usageIsLoading)&&<Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>}
         <Row>
-          
           <Offcanvas show={show} onHide={handleClose} placement="end">
             <Offcanvas.Header closeButton>
               <Offcanvas.Title>Filters</Offcanvas.Title>
@@ -60,24 +60,23 @@ function UsageMain() {
                 usageResolution={usageResolution} setUsageResolution={setUsageResolution} smoothAmt={smoothAmt} setSmoothAmt={setSmoothAmt} chartType={chartType} setChartType={setChartType} />
             </Offcanvas.Body>
           </Offcanvas>
-
+          {(isAuthenticated&&usageIsLoading)&&<Alert variant='warning'>This page can take a while to load.  If you aren't seeing anything after 3 minutes, email kevin@theproblemsolversguild.com</Alert>}
           <Col xs={12} lg={12}>
             <Row className='pt-4'>
-              <Col></Col>
-              <Col sm={12}>
+              <Col sm={10}>
               {userInfo && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Filters":"Show Filters"}</Button>}
               {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
               {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
               {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account!</Button>}
               </Col>
-              <Col></Col>
+              <Col sm={2}>{(!usageIsLoading && userInfo && userInfo.esiid)&&<Button title="Explore the rate finder" variant='light' onClick={() => navigate('/app')}><ArrowsAngleContract fill='black' size={24} className='bi'/></Button>}</Col>
             </Row> 
             <Row className='pt-2' style={{height:'50rem'}}>
               <Col sm={12} className='text-center'>
                 {usageIsLoading&&<Spinner animation="border" variant="secondary" />}
                 {(!usageIsLoading&&chartType=='line')&&<UsageChart usageData={usage} />}
                 {(!usageIsLoading&&chartType=='bar')&&<UsageBarChart usageData={usage} />}
-
+                {(!usageIsLoading&&chartType=='table')&&<UsageTable usageData={usage} />}
               </Col>
             </Row>
           </Col>

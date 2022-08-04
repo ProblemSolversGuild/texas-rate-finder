@@ -13,6 +13,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { getUsage, getFakeUsage } from './data/Usage';
 import { getRatePlanList, getFakeRatePlanList } from './data/RatePlanList';
 import { getUserInfo } from './data/UserInfo';
+import { ArrowsAngleExpand } from 'react-bootstrap-icons';
 
 
 function FinderMain() {
@@ -70,12 +71,12 @@ function FinderMain() {
 
           <Col xs={12} lg={12}>
           <Row className='pt-4'>
-              <Col></Col>
-              <Col xl={9} xxl={6}>
+            <Col sm={3} xl={2} xxl={3} />
+            <Col xl={7} xxl={6}>
                 {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
                 {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account to connect your real usage!</Button>}
               </Col>
-              <Col></Col>
+              <Col sm={2}>{(userInfo && userInfo.esiid && !usageIsLoading)&&<Button title="Explore the usage viewer" variant='light' onClick={() => navigate('/usage')}><ArrowsAngleExpand fill='black' size={24} className='bi'/></Button>}</Col>
             </Row>
             <Row className='pt-2' style={{height:'25rem'}}>
               <Col></Col>
