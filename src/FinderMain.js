@@ -72,14 +72,12 @@ function FinderMain() {
           <Row className='pt-4'>
               <Col></Col>
               <Col xl={9} xxl={6}>
-              {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Filters":"Show Filters"}</Button>}
-              {(isAuthenticated)&&<Button className="mx-2" variant="primary" href='https://donate.stripe.com/eVa16r91H0E21HOdQS' target="_blank">Donate</Button>}
-              {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
-              {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account to connect your real usage!</Button>}
+                {(userInfo && !userInfo.esiid && isAuthenticated)&&<Button variant="success" onClick={() => navigate('/SignUp')}>Connect Your Real Usage</Button>}
+                {(!isAuthenticated)&&<Button variant="success" onClick={() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}}>Create an Account to connect your real usage!</Button>}
               </Col>
               <Col></Col>
-            </Row> 
-            <Row className='pt-2' style={{height:'30rem'}}>
+            </Row>
+            <Row className='pt-2' style={{height:'25rem'}}>
               <Col></Col>
               <Col xl={9} xxl={6} className='text-center' >
                 {usageIsLoading&&<Spinner animation="border" variant="secondary" />}
@@ -87,7 +85,14 @@ function FinderMain() {
               </Col>
               <Col></Col>
             </Row>
-            <Row className='mt-1'>
+            <Row className='pt-1'>
+              <Col className='px-0'></Col>
+              <Col className='px-0' xl={9} xxl={8}>
+                {userInfo && ratePlanList && userInfo.esiid && <Button className="mx-0" variant="primary" onClick={handleShow}>{show?"Hide Filters":"Show Filters"}</Button>}
+              </Col>
+              <Col></Col>
+            </Row> 
+            <Row className='mt-2'>
               <Col></Col>
               { ratePlanListLoading&&<Spinner animation="border" variant="secondary" />}
               { ratePlanList && <OutputPlanList planList={ratePlanList} showCancelation={showCancelation} />}

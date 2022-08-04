@@ -6,10 +6,11 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const OutputPlanItem = ( { plan, showCancelation }) => {
     const [showPlanSummary,setShowPlanSummary]=useState(false)
-    const pn_length = 65;
+    const pn_length = 80;
     const uri_front = process.env.REACT_APP_FRONT;
     const { user, loginWithRedirect } = useAuth0();
-    var product_name = plan.product.replace(/_/g, ' ')
+    var product_name = plan.product_display?plan.product_display:plan.product
+    product_name=product_name.replace(/_/g, ' ')
     //https://www.w3schools.com/howto/howto_css_flip_card.asp maybe would be cool to show information on the 'back' of the card like this?
     return (
         <>
@@ -19,8 +20,8 @@ const OutputPlanItem = ( { plan, showCancelation }) => {
                     <Card.Text>${plan.plan_$_per_kwh.toFixed(3)}/kWh{showCancelation&&<><br />Cancelation: {plan.cancel_fee}</>}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <small className='text-muted'>{plan.rep_company}</small><br/>
-                    <Button className='px-0 mx-0 border-0' size='sm' variant='link' onClick={plan.product.includes("Sample Plan")?() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}:()=>setShowPlanSummary(!showPlanSummary)} >{plan.product.includes("Sample Plan")?'Create a free account to connect your real usage':'Details'}</Button>
+                    <small className='text-muted'>{plan.rep_company_display?plan.rep_company_display:plan.rep_company}</small><br/>
+                    <Button className='px-0 mx-0 border-0' size='sm' variant='link' onClick={product_name.includes("Sample Plan")?() => {loginWithRedirect({ screen_hint: "signup", redirectUri: uri_front+'#/SignUp'})}:()=>setShowPlanSummary(!showPlanSummary)} >{product_name.includes("Sample Plan")?'Create a free account to connect your real usage':'Details'}</Button>
                 </Card.Footer>
             </Card>
             {showPlanSummary && <PlanSummary plan={plan} showPlanSummary setShowPlanSummary={setShowPlanSummary} />}
