@@ -76,16 +76,19 @@ In the project directory, you can run:
 
 ## Project Structure
 
-```
-├── public/
-│   └── index.html
-├── src/
-│   ├── components/
-│   ├── App.js
-│   └── index.js
-├── package.json
-└── README.md
-```
+    ├── public/
+    │   └── index.html
+    ├── src/
+    │   ├── auth/
+    │   ├── components/
+    │   ├── data/
+    │   ├── FinderMain.js
+    │   ├── Landing.js
+    │   ├── NavBar.js
+    │   ├── UsageMain.js
+    │   └── index.js
+    ├── package.json
+    └── README.md
 > The codebase is mostly JavaScript (~90%) with some CSS and HTML.
 
 ## Contributing
