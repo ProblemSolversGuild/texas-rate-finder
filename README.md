@@ -21,7 +21,6 @@ This repository contains the UI for the Texas Rate Finder application—an easy-
 - Responsive design for desktop and mobile
 - Fast and efficient UI powered by React
 - Easy customization and extension
-- [Add more features as implemented]
 
 ## Getting Started
 
