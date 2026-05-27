@@ -10,7 +10,6 @@ This repository contains the UI for the Texas Rate Finder application—an easy-
 - [Available Scripts](#available-scripts)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
